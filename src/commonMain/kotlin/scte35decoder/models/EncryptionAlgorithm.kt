@@ -14,7 +14,7 @@ enum class EncryptionAlgorithm {
 
     companion object {
         fun withOrdinal(ordinal: Int): EncryptionAlgorithm {
-            return when(ordinal) {
+            return when (ordinal) {
                 0 -> None
                 1 -> DES_ECB
                 2 -> DES_CBC
@@ -25,5 +25,4 @@ enum class EncryptionAlgorithm {
             }
         }
     }
-
 }

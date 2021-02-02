@@ -1,8 +1,13 @@
 package scte35decoder.models
 
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
+
 /**
  * splice_insert()
  */
+@ExperimentalJsExport
+@JsExport
 class SpliceEventInsert: SpliceEvent() {
 
     data class Component(val tag: Int, val time: SpliceTime?)

@@ -1,8 +1,13 @@
 package scte35decoder.models
 
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
+
 /**
  * splice_command()
  */
+@ExperimentalJsExport
+@JsExport
 sealed class SpliceCommand {
 
     /**
