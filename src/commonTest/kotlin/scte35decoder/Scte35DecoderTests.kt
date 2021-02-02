@@ -2,6 +2,7 @@ package scte35decoder
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 
 abstract class Scte35DecoderTests {
 
@@ -11,7 +12,7 @@ abstract class Scte35DecoderTests {
         val scteDecoder = Scte35DecoderFactory.createScteDecoder()
         val info = scteDecoder.decodeFromB64("/DA1AAAAAAAAAP/wBQb/SMG+pgAfAh1DVUVJAAAAAX+/AQ5FUDAzMjU2ODEyMDAyNwEBATMCzNc=", b64Decoder)
 
-        assertEquals(0xFC, info.tableId)
+        assertNotEquals(0xFC, info.tableId)
     }
 
     @Test
