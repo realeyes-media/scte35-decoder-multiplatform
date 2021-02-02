@@ -5,7 +5,7 @@ package scte35decoder.models
  */
 class UPID(val t: Int, val bytes: UByteArray) {
 
-    enum class Type (val length: Int, val description: String) {
+    enum class Type(val length: Int, val description: String) {
 
         None(0, "Not Used"),
         User(-1, "User Defined"), // -1 variable length
@@ -27,7 +27,7 @@ class UPID(val t: Int, val bytes: UByteArray) {
 
         companion object {
             fun withOrdinal(o: Int): Type {
-                return when(o) {
+                return when (o) {
                     None.ordinal -> None
                     User.ordinal -> User
                     ISCI.ordinal -> ISCI
@@ -44,12 +44,11 @@ class UPID(val t: Int, val bytes: UByteArray) {
                     MID.ordinal -> MID
                     ADS.ordinal -> ADS
                     URI.ordinal -> URI
-                    in Reserved.ordinal .. 0xff -> Reserved
+                    in Reserved.ordinal..0xff -> Reserved
                     else -> throw IllegalArgumentException("Unknown UPID type 0x$o")
                 }
             }
         }
-
     }
 
     private val type: Type
@@ -77,5 +76,4 @@ class UPID(val t: Int, val bytes: UByteArray) {
         }
         return result
     }
-
 }

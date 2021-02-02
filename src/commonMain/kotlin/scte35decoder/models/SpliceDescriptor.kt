@@ -1,24 +1,35 @@
 package scte35decoder.models
 
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
+
 /**
  * splice_descriptor()
  */
+
 sealed class SpliceDescriptor {
 
     /**
      * avail_descriptor()
      */
-    data class Avail(val tag: Int, val id: Long, val providerAvailIdentifier: Long): SpliceDescriptor()
+    data class Avail(val tag: Int, val id: Long, val providerAvailIdentifier: Long) :
+        SpliceDescriptor()
 
     /**
      * DTMF_descriptor()
      */
-    data class DTMF(val tag: Int, val id: Long, val preroll: Int, val dtmfCount: Int, val dtmfChar: String): SpliceDescriptor()
+    data class DTMF(
+        val tag: Int,
+        val id: Long,
+        val preroll: Int,
+        val dtmfCount: Int,
+        val dtmfChar: String
+    ) : SpliceDescriptor()
 
     /**
      * segmentation_descriptor()
      */
-    class Segmentation: SpliceDescriptor() {
+    class Segmentation : SpliceDescriptor() {
 
         var tag: Int? = null
             internal set
@@ -34,7 +45,7 @@ sealed class SpliceDescriptor {
 
             companion object {
                 fun withOrdinal(o: Int): DeviceRestrictions {
-                    return when(o) {
+                    return when (o) {
                         0x00 -> RestrictGroup0
                         0x01 -> RestrictGroup1
                         0x02 -> RestrictGroup2
@@ -110,19 +121,31 @@ sealed class SpliceDescriptor {
 
         var subSegmentsExpected: Int? = null
             internal set
-
     }
 
     /**
      * time_descriptor()
      */
-    data class Time(val tag: Int, val id: Long, val taiSeconds: Long, val taiNanoseconds: Long, val utcOffset: Int): SpliceDescriptor()
+    data class Time(
+        val tag: Int,
+        val id: Long,
+        val taiSeconds: Long,
+        val taiNanoseconds: Long,
+        val utcOffset: Int
+    ) : SpliceDescriptor()
 
     /**
      * audio_descriptor()
      */
-    data class Audio(val tag: Int, val id: Long, val components: Array<Component>): SpliceDescriptor() {
-        data class Component(val tag: Int, val isoCode: Int, val mode: BitStreamMode, val numChannels: Int, val fullServiceAudio: Boolean)
+    data class Audio(val tag: Int, val id: Long, val components: Array<Component>) :
+        SpliceDescriptor() {
+        data class Component(
+            val tag: Int,
+            val isoCode: Int,
+            val mode: BitStreamMode,
+            val numChannels: Int,
+            val fullServiceAudio: Boolean
+        )
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -144,5 +167,4 @@ sealed class SpliceDescriptor {
             return result
         }
     }
-
 }

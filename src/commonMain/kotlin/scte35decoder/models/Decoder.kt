@@ -1,5 +1,10 @@
 package scte35decoder.models
 
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
+
+@ExperimentalJsExport
+@JsExport
 class Decoder(private val data: UByteArray) {
 
     private val iterator: UByteIterator = data.iterator()

@@ -1,5 +1,10 @@
 package scte35decoder.models
 
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
+
+@ExperimentalJsExport
+@JsExport
 abstract class SpliceEvent {
 
     var id: Long? = null

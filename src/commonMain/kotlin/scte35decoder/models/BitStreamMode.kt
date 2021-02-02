@@ -14,7 +14,7 @@ enum class BitStreamMode {
 
     companion object {
         fun withOrdinal(o: Int): BitStreamMode {
-            return when(o) {
+            return when (o) {
                 0 -> CompleteMain
                 1 -> MusicAndEffects
                 2 -> VisuallyImpaired
@@ -28,5 +28,4 @@ enum class BitStreamMode {
             }
         }
     }
-
 }
