@@ -26,6 +26,8 @@ Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/L
 
 **Javascript**
 
+
+After running the build command, the js package can be found here: `build/js/packages/scte35decoder`
 ```TypeScript
 const { Scte35DecoderFactory } = require('./packages/scte35decoder').scte35decoder;
 
