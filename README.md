@@ -74,7 +74,6 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 ### Step 2: Add your GitHub - Personal Access Token details to environment variables
 	
 - You add the **GPR_USER** and **GPR_API_KEY** values to your environment variables on you local machine or build server to avoid creating a github properties file
-- Then under the test package you can find ExampleUnitTest which uses the library methods and it will run successfully
 
 ### Step 3: Configure Github pacakges
 
@@ -92,6 +91,8 @@ repositories {
         }
     }
  ```
+
+ - Then under the test package you can find ExampleUnitTest which uses the library methods and it will run successfully
 
 Parse From Base64 String
 
