@@ -76,6 +76,23 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 - You add the **GPR_USER** and **GPR_API_KEY** values to your environment variables on you local machine or build server to avoid creating a github properties file
 - Then under the test package you can find ExampleUnitTest which uses the library methods and it will run successfully
 
+### Step 3: Configure Github pacakges
+
+```
+repositories {
+        maven {
+            name = "GitHubPackages"
+
+            url = uri("https://maven.pkg.github.com/UserID/REPOSITORY")
+
+            credentials {
+                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+            }
+        }
+    }
+ ```
+
 Parse From Base64 String
 
 ```
