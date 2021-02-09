@@ -15,7 +15,7 @@ Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/L
 
 ### Related Projects
 
-[Android Specific](https://github.com/realeyes-media/scte35-kotlin)
+[Android Specific](https://github.com/realeyes-media/scte35-android)
 
 [iOS Specific](https://github.com/realeyes-media/scte35-swift)
 
