@@ -13,9 +13,9 @@ This is the RealEyes Kotlin Multiplatform project for SCTE-35 parsing.
 Create a `local.properties` file with a single property `sdk.dir={Android_SDK_LOCATION}`.
 Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/Library/Android/sdk`
 
-### Related Projects
+### Reference Projects
 
-[Android Specific](https://github.com/realeyes-media/scte35-kotlin)
+[Android Specific](https://github.com/realeyes-media/scte35-android)
 
 [iOS Specific](https://github.com/realeyes-media/scte35-swift)
 
@@ -55,6 +55,69 @@ console.log('from Base64 String: ', scteMessageFromBase64String(B64_STRING));
 console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 ```
 
+**Android**
+
+## Usage
+
+- In build.gradle under dependencies add the following
+```
+ implementation 'com.realeyes:scte35decoder:0.100.2'
+ 
+```
+- Add environmental variables for your Github token and username credentials
+### Step 1 : Generate a Personal Access Token for GitHub
+- Inside you GitHub account:
+	- Settings -> Developer Settings -> Personal Access Tokens -> Generate new token
+	- Make sure you select the following scopes (" write:packages", " read:packages") and Generate a token
+	- After Generating make sure to copy your new personal access token. You won’t be able to see it again!
+
+### Step 2: Add your GitHub - Personal Access Token details to environment variables
+	
+- You add the **GPR_USER** and **GPR_API_KEY** values to your environment variables on you local machine or build server to avoid creating a github properties file
+
+### Step 3: Configure Github pacakges
+
+```
+repositories {
+        maven {
+            name = "GitHubPackages"
+
+            url = uri("https://maven.pkg.github.com/UserID/REPOSITORY")
+
+            credentials {
+                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+            }
+        }
+    }
+ ```
+
+ - Then under the test package you can find ExampleUnitTest which uses the library methods and it will run successfully
+
+Parse From Base64 String
+
+```
+   @Test
+    fun correctly_parses_ContentIdentification_scte_message_from_base64_string() {
+        val b64Decoder = Scte35DecoderFactory.createB64Decoder()
+        val scteDecoder = Scte35DecoderFactory.createScteDecoder()
+        val info = scteDecoder.decodeFromB64("/DA1AAAAAAAAAP/wBQb/SMG+pgAfAh1DVUVJAAAAAX+/AQ5FUDAzMjU2ODEyMDAyNwEBATMCzNc=", b64Decoder)
+
+        assertEquals(0xFC, info.tableId)
+    }
+```
+
+Parse from Hex String
+
+```
+  @Test
+    fun correctly_parses_ContentIdentification_scte_message_from_hex_string() {
+        val scteDecoder = Scte35DecoderFactory.createScteDecoder()
+        val info = scteDecoder.decodeFromHex("0xFC303500000000000000FFF00506FF48C1BEA6001F021D43554549000000017FBF010E45503033323536383132303032370101013302CCD7")
+
+        assertEquals(0xFC, info.tableId)
+    }
+```
 ### License
 
 This project is licensed under the MIT License. See LICENSE file for details.
