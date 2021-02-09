@@ -13,7 +13,7 @@ This is the RealEyes Kotlin Multiplatform project for SCTE-35 parsing.
 Create a `local.properties` file with a single property `sdk.dir={Android_SDK_LOCATION}`.
 Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/Library/Android/sdk`
 
-### Related Projects
+### Reference Projects
 
 [Android Specific](https://github.com/realeyes-media/scte35-android)
 
