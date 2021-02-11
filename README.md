@@ -19,6 +19,8 @@ Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/L
 
 [iOS Specific](https://github.com/realeyes-media/scte35-swift)
 
+[iOS Test Harness](https://github.com/realeyes-media/scte35-decoder-multiplatform-iOS-harness)
+
 [Javascript Specific](https://github.com/realeyes-media/scte35-js)
 
 ### How to Include on Your Platform
