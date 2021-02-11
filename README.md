@@ -59,6 +59,42 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 
 **Android**
 
+**iOS**
+
+After running the build command, the js package can be found here: `build/cocoapods/framework/scte35decoder.framework
+_When installing the framework, be sure to chose "copy if needed" with adding the framework to the project._
+
+```Swift
+import scte35decoder
+
+let b64String = "/DA1AAAAAAAAAP/wBQb/SMG+pgAfAh1DVUVJAAAAAX+/AQ5FUDAzMjU2ODEyMDAyNwEBATMCzNc="
+let hexString = "0xFC303500000000000000FFF00506FF48C1BEA6001F021D43554549000000017FBF010E45503033323536383132303032370101013302CCD7"
+
+class SCTEDecoder {
+    
+    let b64Decoder = Scte35DecoderFactory().createB64Decoder()
+    let scteDecoder = Scte35DecoderFactory().createScteDecoder()
+    
+    /**
+    * Parse Scte Message From Base64 String
+    */
+    
+    func decodeFromB64(b64String: String) -> SpliceInfoSection {
+        return scteDecoder.decodeFromB64(b64String: b64String, b64Decoder: b64Decoder)
+    }
+    
+    /**
+    * Parse Scte Message From Hex String
+    */
+    
+    func decodeFromHex(hexString: String) -> SpliceInfoSection {
+        return scteDecoder.decodeFromHex(hexString: hexString)
+    }
+}
+```
+
+-------
+
 ## Usage
 
 - In build.gradle under dependencies add the following
