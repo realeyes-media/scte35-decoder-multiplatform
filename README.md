@@ -92,8 +92,6 @@ class SCTEDecoder {
 }
 ```
 
--------
-
 ## Usage
 
 - In build.gradle under dependencies add the following
