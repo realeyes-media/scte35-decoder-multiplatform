@@ -61,8 +61,8 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 
 **iOS**
 
-After running the build command, the js package can be found here: `build/cocoapods/framework/scte35decoder.framework
-_When installing the framework, be sure to chose "copy if needed" with adding the framework to the project._
+After running the build command, the iOS framework can be found here: `build/cocoapods/framework/scte35decoder.framework
+_When adding the framework to the project, be sure to choose "copy if needed."_
 
 ```Swift
 import scte35decoder
