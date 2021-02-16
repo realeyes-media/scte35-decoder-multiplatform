@@ -34,7 +34,6 @@ Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/L
 
 
 ### Javascript
-----
 
 
 After running the build command, the js package can be found here: `build/js/packages/scte35decoder`
@@ -68,7 +67,6 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 
 
 ### iOS
-----
 
 
 To create & install a framework to use in iOS/Xcode:
@@ -113,7 +111,6 @@ class SCTEDecoder {
 
 
 ## Android
-----
 
 
 ## Usage
