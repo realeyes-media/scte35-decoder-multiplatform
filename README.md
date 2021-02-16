@@ -67,7 +67,7 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 
 
 
-###iOS
+### iOS
 ----
 
 
@@ -112,7 +112,7 @@ class SCTEDecoder {
 
 
 
-##Android
+## Android
 ----
 
 
