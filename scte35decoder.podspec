@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'scte35decoder'
-    spec.version                  = '0.0.1'
+    spec.version                  = '0.0.2'
     spec.homepage                 = 'https://github.com/realeyes-media/scte35-decoder-multiplatform'
     spec.source                   = { :git => "Not Published", :tag => "Cocoapods/#{spec.name}/#{spec.version}" }
     spec.authors                  = ''
