@@ -21,15 +21,20 @@ Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/L
 
 [Javascript Specific](https://github.com/realeyes-media/scte35-js)
 
+
+
 ### Test Harnesses
 
 [iOS Test Harness](https://github.com/realeyes-media/scte35-decoder-multiplatform-iOS-harness)
 
 
+
 ### How to Include on Your Platform
 
 
+
 **Javascript**
+
 
 After running the build command, the js package can be found here: `build/js/packages/scte35decoder`
 ```TypeScript
@@ -59,7 +64,10 @@ console.log('from Base64 String: ', scteMessageFromBase64String(B64_STRING));
 console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 ```
 
+
+
 **iOS**
+
 
 To create & install a framework to use in iOS/Xcode:
 1. From the terminal, `cd` into the scte35-decoder-multiplatform project & type `./gradlew build` to run the the build command to build the framework. 
@@ -69,7 +77,7 @@ To create & install a framework to use in iOS/Xcode:
 5. Scroll down to **Frameworks, Libraries, and Embedded Content**, select the + button & navigate to `scte35decoder.framework` to add framework or drag file from Finder directly to this area.
 6. In each file where the framework will be used, be sure to add `import scte35decoder` to top of the file as part of the import statements.
 
-_Note: If Xcode has difficulties connecting to the framework, delete the framework from the Frameworks folder in the left panel, choosing "Remove Reference." Then physically drag & drop the framework directly into that folder & choose "copy if needed."_
+_Note: If Xcode has difficulties connecting to the framework, delete the framework from the Frameworks folder in Project Navigator, choosing "Remove Reference." Then physically drag & drop the framework directly into that folder & choose "copy if needed."_
 
 ```Swift
 import scte35decoder
@@ -100,7 +108,10 @@ class SCTEDecoder {
 }
 ```
 
+
+
 **Android**
+
 
 ## Usage
 
