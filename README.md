@@ -98,8 +98,6 @@ class SCTEDecoder {
 ------
 #### Android
 
-### Usage
-
 - In build.gradle under dependencies add the following
 ```
  implementation 'com.realeyes:scte35decoder:0.100.2'
