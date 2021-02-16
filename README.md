@@ -6,6 +6,8 @@ SCTE-35 is the standard for time-based event messaging in video streams. It's mo
 
 This is the RealEyes Kotlin Multiplatform project for SCTE-35 parsing.
 
+### Project Setup
+
 **NOTE** Android Studio or IntelliJ should do this step automatically.
 
 Create a `local.properties` file with a single property `sdk.dir={Android_SDK_LOCATION}`.
