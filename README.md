@@ -17,25 +17,15 @@ Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/L
 
 [Android Specific](https://github.com/realeyes-media/scte35-android)
 
-[iOS Specific](https://github.com/realeyes-media/scte35-swift)
+[iOS Specific](https://github.com/realeyes-media/scte35-decoder-multiplatform-iOS-harness)
 
 [Javascript Specific](https://github.com/realeyes-media/scte35-js)
-
-
-
-### Test Harnesses
-
-[iOS Test Harness](https://github.com/realeyes-media/scte35-decoder-multiplatform-iOS-harness)
-
-
 
 ### How to Include on Your Platform
 
 
 
-## Javascript
-
-
+#### Javascript
 After running the build command, the js package can be found here: `build/js/packages/scte35decoder`
 ```TypeScript
 const { Scte35DecoderFactory } = require('./packages/scte35decoder').scte35decoder;
@@ -66,9 +56,7 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 
 
 
-## iOS
-
-
+#### iOS
 To create & install a framework to use in iOS/Xcode:
 1. From the terminal, `cd` into the scte35-decoder-multiplatform project & type `./gradlew build` to run the the build command to build the framework. 
 2. Once the build has completed, the iOS framework can be found here: `scte35-decoder-multiplatform/build/cocoapods/framework/scte35decoder.framework`. 
@@ -108,11 +96,7 @@ class SCTEDecoder {
 }
 ```
 
-
-
-## Android
-
-
+#### Android
 ### Usage
 
 - In build.gradle under dependencies add the following
