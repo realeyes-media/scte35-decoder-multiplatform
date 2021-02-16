@@ -17,17 +17,15 @@ Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/L
 
 [Android Specific](https://github.com/realeyes-media/scte35-android)
 
-[iOS Specific](https://github.com/realeyes-media/scte35-swift)
-
-[iOS Test Harness](https://github.com/realeyes-media/scte35-decoder-multiplatform-iOS-harness)
+[iOS Specific](https://github.com/realeyes-media/scte35-decoder-multiplatform-iOS-harness)
 
 [Javascript Specific](https://github.com/realeyes-media/scte35-js)
 
 ### How to Include on Your Platform
 
 
-**Javascript**
-
+------
+#### Javascript
 
 After running the build command, the js package can be found here: `build/js/packages/scte35decoder`
 ```TypeScript
@@ -57,11 +55,19 @@ console.log('from Base64 String: ', scteMessageFromBase64String(B64_STRING));
 console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 ```
 
-**Android**
 
-**iOS**
+------
+#### iOS
 
-After running the build command, the iOS framework can be found here: `build/cocoapods/framework/scte35decoder.framework`. _When adding the framework to the project, be sure to choose "copy if needed."_
+To create & install a framework to use in iOS/Xcode:
+1. From the terminal, `cd` into the scte35-decoder-multiplatform project & type `./gradlew build` to run the the build command to build the framework. 
+2. Once the build has completed, the iOS framework can be found here: `scte35-decoder-multiplatform/build/cocoapods/framework/scte35decoder.framework`. 
+3. Inside a new or existing iOS Project in Xcode, from the Project Navigator (the leftmost panel in Xcode), select the project file. 
+4. In the center panel, under **TARGETS**, select the target in which the framework will be used. 
+5. Scroll down to **Frameworks, Libraries, and Embedded Content**, select the + button & navigate to `scte35decoder.framework` to add framework or drag file from Finder directly to this area.
+6. In each file where the framework will be used, be sure to add `import scte35decoder` to top of the file as part of the import statements.
+
+_Note: If Xcode has difficulties connecting to the framework, delete the framework from the Frameworks folder in Project Navigator, choosing "Remove Reference." Then physically drag & drop the framework directly into that folder & choose "copy if needed."_
 
 ```Swift
 import scte35decoder
@@ -91,8 +97,8 @@ class SCTEDecoder {
     }
 }
 ```
-
-## Usage
+------
+#### Android
 
 - In build.gradle under dependencies add the following
 ```
@@ -110,7 +116,7 @@ class SCTEDecoder {
 	
 - You add the **GPR_USER** and **GPR_API_KEY** values to your environment variables on you local machine or build server to avoid creating a github properties file
 
-### Step 3: Configure Github pacakges
+### Step 3: Configure Github packages
 
 ```
 repositories {
