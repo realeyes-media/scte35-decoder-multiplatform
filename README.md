@@ -60,8 +60,8 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 #### iOS
 
 To create & install a framework to use in iOS/Xcode:
-1. From the terminal, `cd` into the scte35-decoder-multiplatform project & type `./gradlew build` to run the the build command to build the framework. 
-2. Once the build has completed, the iOS framework can be found here: `scte35-decoder-multiplatform/build/cocoapods/framework/scte35decoder.framework`. 
+1. From the terminal, `cd` into the scte35-decoder-multiplatform project & type `./gradlew packForXcode` to run the the build command to build the iOS framework.
+2. Once the build has completed, the iOS framework can be found here: `scte35-decoder-multiplatform/build/xcode-frameworks/scte35decoder.framework`.
 3. Inside a new or existing iOS Project in Xcode, from the Project Navigator (the leftmost panel in Xcode), select the project file. 
 4. In the center panel, under **TARGETS**, select the target in which the framework will be used. 
 5. Scroll down to **Frameworks, Libraries, and Embedded Content**, select the + button & navigate to `scte35decoder.framework` to add framework or drag file from Finder directly to this area.
