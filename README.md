@@ -27,6 +27,8 @@ Replace the placeholder with your Android SDK location, ex: `/User/{USER_NAME}/L
 ------
 #### Javascript
 
+WIP: need to verify these steps are still valid
+
 After running the build command, the js package can be found here: `build/js/packages/scte35decoder`
 ```TypeScript
 const { Scte35DecoderFactory } = require('./packages/scte35decoder').scte35decoder;
@@ -59,8 +61,10 @@ console.log('from Hex String: ', scteMessageFromHexString(HEX_STRING));
 ------
 #### iOS
 
+WIP: need to verify these steps are still valid
+
 To create & install a framework to use in iOS/Xcode:
-1. From the terminal, `cd` into the scte35-decoder-multiplatform project & type `./gradlew packForXcode` to run the the build command to build the iOS framework.
+1. From the terminal, `cd` into the scte35-decoder-multiplatform project & type `./gradlew embedAndSignAppleFrameworkForXcode` to run the the build command to build the iOS framework. See XCode details [here](https://blog.jetbrains.com/kotlin/2021/07/multiplatform-gradle-plugin-improved-for-connecting-kmm-modules/).
 2. Once the build has completed, the iOS framework can be found here: `scte35-decoder-multiplatform/build/xcode-frameworks/scte35decoder.framework`.
 3. Inside a new or existing iOS Project in Xcode, from the Project Navigator (the leftmost panel in Xcode), select the project file. 
 4. In the center panel, under **TARGETS**, select the target in which the framework will be used. 
