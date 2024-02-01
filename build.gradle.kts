@@ -87,8 +87,6 @@ kotlin {
         val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(kotlin("test-junit"))
-                implementation("org.robolectric:robolectric:4.5-alpha-3")
             }
         }
 
