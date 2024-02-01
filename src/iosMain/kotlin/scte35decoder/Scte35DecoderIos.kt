@@ -18,7 +18,7 @@ object Base64DecoderIOS: Base64Decoder {
 }
 object Scte35DecoderIos : Scte35Decoder {
     override fun decodeFromB64(b64String: String, b64Decoder: Base64Decoder): SpliceInfoSection {
-        val data = b64Decoder.decode(b64String).asUByteArray()
+        val data = b64Decoder.decode(b64String)
         val decoder = Decoder(data)
         return decoder.getSpliceInfoSection()
     }

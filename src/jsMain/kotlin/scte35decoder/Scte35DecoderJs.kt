@@ -4,7 +4,6 @@ import io.ktor.util.InternalAPI
 import io.ktor.util.decodeBase64Bytes
 import scte35decoder.models.Decoder
 import scte35decoder.models.SpliceInfoSection
-import scte35decoder.utils.hexStringToUByteArray
 
 @ExperimentalJsExport
 @JsExport
@@ -26,7 +25,7 @@ object Base64DecoderJs: Base64Decoder {
 @JsExport
 object Scte35DecoderJs: Scte35Decoder {
     override fun decodeFromB64(b64String: String, b64Decoder: Base64Decoder): SpliceInfoSection {
-        val data = b64Decoder.decode(b64String).asUByteArray()
+        val data = b64Decoder.decode(b64String)
         val decoder = Decoder(data)
         return decoder.getSpliceInfoSection()
     }

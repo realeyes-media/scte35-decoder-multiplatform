@@ -2,7 +2,7 @@ package scte35decoder
 
 import scte35decoder.models.Decoder
 import scte35decoder.models.SpliceInfoSection
-import scte35decoder.utils.hexStringToUByteArray
+import scte35decoder.utils.hexStringToByteArray
 import kotlin.js.JsName
 
 interface Scte35Decoder {
@@ -11,7 +11,7 @@ interface Scte35Decoder {
 
     @JsName("decodeFromHex")
     fun decodeFromHex(hexString: String): SpliceInfoSection {
-        val data = hexString.hexStringToUByteArray()
+        val data = hexString.hexStringToByteArray()
         val decoder = Decoder(data)
         return decoder.getSpliceInfoSection()
     }
