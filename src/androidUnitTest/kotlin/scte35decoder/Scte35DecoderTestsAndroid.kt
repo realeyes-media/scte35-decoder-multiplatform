@@ -1,6 +1,5 @@
 package scte35decoder
 
-import android.util.Base64
 import scte35decoder.models.Decoder
 import scte35decoder.models.SpliceInfoSection
 
@@ -11,7 +10,7 @@ actual object Scte35DecoderFactory {
 
 object Base64DecoderAndroid: Base64Decoder {
     override fun decode(str: String): ByteArray {
-        return Base64.decode(str, Base64.DEFAULT)
+        return java.util.Base64.getDecoder().decode(str)
     }
 }
 
@@ -22,3 +21,5 @@ object Scte35DecoderAndroid: Scte35Decoder  {
         return decoder.getSpliceInfoSection()
     }
 }
+
+class Scte35DecoderTestsAndroid: Scte35DecoderTests()

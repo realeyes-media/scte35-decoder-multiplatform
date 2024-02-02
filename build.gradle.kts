@@ -3,17 +3,16 @@ import org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 plugins {
-    kotlin("multiplatform") version "1.4.21"
-    kotlin("native.cocoapods") version "1.4.21"
+    kotlin("multiplatform") version "1.9.22"
+    kotlin("native.cocoapods") version "1.9.22"
     id("org.jetbrains.dokka") version "0.10.1"
     id("maven-publish")
-    id("com.android.library") version "3.5.3"
+    id("com.android.library") version "8.0.2"
 }
 
 repositories {
     google()
     mavenCentral()
-    jcenter()
 }
 
 
@@ -35,16 +34,24 @@ publishing {
 }
 
 kotlin {
-    android {
+    androidTarget {
         publishLibraryVariants("release", "debug")
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
     }
 
-    ios ()
+    applyDefaultHierarchyTemplate ()
+
+    iosX64()
+    iosArm64()
 
     cocoapods {
         summary = "CocoaPods stce35-decoder library"
         homepage = "https://github.com/realeyes-media/scte35-decoder-multiplatform"
-        ios.deploymentTarget = "13.5"
+        ios.deploymentTarget = "15"
     }
 
     js {
@@ -56,15 +63,11 @@ kotlin {
     }
 
     sourceSets {
-        all {
-            languageSettings.useExperimentalAnnotation("kotlin.Experimental")
-            languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
-        }
 
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation("io.ktor:ktor-utils:1.5.0")
+                implementation("io.ktor:ktor-utils:2.3.7")
             }
         }
 
@@ -81,11 +84,9 @@ kotlin {
             }
         }
 
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(kotlin("test-junit"))
-                implementation("org.robolectric:robolectric:4.5-alpha-3")
             }
         }
 
@@ -104,11 +105,11 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(29)
+    namespace = "scte35.decoder.multiplatform"
+    compileSdk = 33
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
+        minSdk = 21
     }
 
     testOptions {
@@ -125,21 +126,19 @@ tasks.withType<Test> {
 
 }
 
-
-
-tasks.register("debugFatFramework", FatFrameworkTask::class) {
-    baseName = project.name
-
-    // Framework is output here
-    destinationDir = buildDir.resolve("fat-framework/debug")
-
-    val targets = mutableListOf(
-        kotlin.iosX64(),
-        kotlin.iosArm64()
-    )
-
-    from(targets.map { it.binaries.getFramework(NativeBuildType.DEBUG) })
-}
+//tasks.register("debugFatFramework", FatFrameworkTask::class) {
+//    baseName = project.name
+//
+//    // Framework is output here
+//    destinationDir = buildDir.resolve("fat-framework/debug")
+//
+//    val targets = mutableListOf(
+//        kotlin.iosX64(),
+//        kotlin.iosArm64()
+//    )
+//
+//    from(targets.map { it.binaries.getFramework(NativeBuildType.DEBUG) })
+//}
 
 if (HostManager.hostIsMac) {
     val iosTest = tasks.register("iosTest", Exec::class) {
@@ -165,42 +164,3 @@ if (HostManager.hostIsMac) {
         dependsOn(iosTest)
     }
 }
-
-val packForXcode by tasks.creating(Sync::class) {
-   val targetDir = File(buildDir, "xcode-frameworks")
-
-   /// selecting the right configuration for the iOS
-   /// framework depending on the environment
-   /// variables set by Xcode build
-   val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-   val sdkName: String? = System.getenv("SDK_NAME")
-   val isiOSDevice = sdkName.orEmpty().startsWith("iphoneos")
-   val framework = kotlin.targets
-       .getByName<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>(
-           if (isiOSDevice) {
-               "iosArm64"
-           } else {
-               "iosX64"
-           }
-       )
-       .binaries.getFramework(mode)
-   inputs.property("mode", mode)
-   dependsOn(framework.linkTask)
-
-   from({ framework.outputDirectory })
-   into(targetDir)
-
-   /// generate a helpful ./gradlew wrapper with embedded Java path
-   doLast {
-       val gradlew = File(targetDir, "gradlew")
-       gradlew.writeText(
-           "#!/bin/bash\n"
-               + "export 'JAVA_HOME=${System.getProperty("java.home")}'\n"
-               + "cd '${rootProject.rootDir}'\n"
-               + "./gradlew \$@\n"
-       )
-       gradlew.setExecutable(true)
-   }
-}
-tasks.getByName("build").dependsOn(packForXcode)
-
