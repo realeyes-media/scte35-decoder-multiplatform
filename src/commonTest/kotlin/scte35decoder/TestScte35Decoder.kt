@@ -5,6 +5,9 @@ import scte35decoder.models.SpliceInfoSection
 import scte35decoder.utils.hexStringToByteArray
 import kotlin.js.JsName
 
+/**
+ * Allows for Android to mock its Base64 decoder for unit testing
+ */
 interface Scte35Decoder {
     @JsName("decodeFromB64")
     fun decodeFromB64(b64String: String, b64Decoder: Base64Decoder): SpliceInfoSection

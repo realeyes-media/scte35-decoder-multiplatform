@@ -53,6 +53,24 @@ sealed class SpliceCommand {
     /**
      * private_command()
      */
-    data class Private(val id: Long, val bytes: UByteArray): SpliceCommand()
+    data class Private(val id: Long, val bytes: ByteArray): SpliceCommand() {
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (other == null || this::class != other::class) return false
+
+            other as Private
+
+            if (id != other.id) return false
+            if (!bytes.contentEquals(other.bytes)) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            var result = id.hashCode()
+            result = 31 * result + bytes.contentHashCode()
+            return result
+        }
+    }
 
 }

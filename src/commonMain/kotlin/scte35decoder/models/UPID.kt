@@ -3,7 +3,7 @@ package scte35decoder.models
 /**
  * segmentation_upid_type
  */
-class UPID(val t: Int, val bytes: UByteArray) {
+class UPID(val t: Int, val bytes: ByteArray) {
 
     enum class Type(val length: Int, val description: String) {
 
@@ -72,7 +72,7 @@ class UPID(val t: Int, val bytes: UByteArray) {
     override fun hashCode(): Int {
         var result = t
         for (i in bytes.indices) {
-            result = 31 * result + bytes[i].toInt()
+            result = 31 * result + bytes.contentHashCode()
         }
         return result
     }
